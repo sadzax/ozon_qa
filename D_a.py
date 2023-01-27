@@ -17,7 +17,7 @@ for iter in range(t):
             less = [ls for ls in array[1:] if ls[x-1] < pivot]
             greater = [ls for ls in array[1:] if ls[x-1] > pivot]
             equal = [ls for ls in array[1:] if ls[x-1] == pivot]
-            return quicksort(less, x) + [array[0]] + quicksort(equal, x) + quicksort(greater, x)
+            return quicksort(less, x) + [array[0]] + [ls for ls in equal] + quicksort(greater, x)
 
 
     for i in kc:
