@@ -1,5 +1,5 @@
 t = int(input())
-for iter in t:
+for iter in range(t):
     n, m = list(map(int, input().split()))  # rows & columns
     arr = []
     for _ in range(n):
@@ -14,9 +14,10 @@ for iter in t:
             return array
         else:
             pivot = array[0][x-1]
-            less = [ls for ls in array[1:] if ls[x-1] <= pivot]
+            less = [ls for ls in array[1:] if ls[x-1] < pivot]
             greater = [ls for ls in array[1:] if ls[x-1] > pivot]
-            return quicksort(less, x) + [array[0]] + quicksort(greater, x)
+            equal = [ls for ls in array[1:] if ls[x-1] == pivot]
+            return quicksort(less, x) + [array[0]] + quicksort(equal, x) + quicksort(greater, x)
 
 
     for i in kc:
