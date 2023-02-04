@@ -27,7 +27,7 @@ for step in range(t):
                 if a > b:
                     answer = 'NO'
                 if len(stack) > 0:
-                    for el in stack:
+                    for el in list(filter(lambda x: x[0] >= a or x[1] >= a or x[0] <= b or x[1] <= b, stack)):
                         answer = check(a, b, el[0], el[1], answer)
                 stack.append([a, b])
             except:
