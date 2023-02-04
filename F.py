@@ -1,11 +1,17 @@
 from datetime import datetime
 
 
-def check(enter, start, end, answer):
-    if start <= enter <= end:
+def check(left, right, start, end, ans):
+    if start <= left <= end or start <= right <= end:
+        return 'NO'
+    elif start >= left <= end and start <= right >= end:
         return 'NO'
     else:
-        return answer
+        return ans
+
+
+def to_time(str1):
+    return datetime.strptime(str1, '%H:%M:%S').time()
 
 
 t = int(input())
@@ -15,22 +21,16 @@ for step in range(t):
     answer = 'YES'
     for i in range(n):
         a, b = map(str, input().split("-"))
-        if answer == "NO":
-            pass
-        else:
+        if answer != "NO":
             try:
-                a = datetime.strptime(a, '%H:%M:%S').time()
-                b = datetime.strptime(b, '%H:%M:%S').time()
-            except:
-                answer = 'NO'
-            try:
+                a = to_time(a)
+                b = to_time(b)
                 if a > b:
                     answer = 'NO'
+                if len(stack) > 0:
+                    for el in stack:
+                        answer = check(a, b, el[0], el[1], answer)
             except:
-                pass
-            if len(stack) > 0:
-                for el in stack:
-                    answer = check(a, el[0], el[1], answer)
-                    answer = check(b, el[0], el[1], answer)
-            stack.append([a, b])
+                answer = 'NO'
+        stack.append([a, b])
     print(answer)
