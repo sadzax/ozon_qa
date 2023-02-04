@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 def check(left, right, start, end, ans):
     if start <= left <= end or start <= right <= end:
         return 'NO'
@@ -30,7 +29,7 @@ for step in range(t):
                 if len(stack) > 0:
                     for el in stack:
                         answer = check(a, b, el[0], el[1], answer)
+                stack.append([a, b])
             except:
                 answer = 'NO'
-        stack.append([a, b])
     print(answer)
